@@ -16,7 +16,7 @@ var options = {
 			version: '1.0.0',
 			description: "API for StudCloud.Admin"
 		},
-		host: require(appRoot + "config").get('bin:host') + ":" + require(appRoot + "config").get('bin:port'),
+		host: require(appRoot + "config").get('host'),//require(appRoot + "config").get('bin:host') + ":" + require(appRoot + "config").get('bin:port'),
 		basePath: '/'
 	},
 	apis: [appRoot + 'routes/authorize/**/*.js', appRoot + 'routes/users/**/*.js', appRoot + 'routes/staticData/subjects/**/*.js',
