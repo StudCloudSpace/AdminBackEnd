@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: string
+    description: идентификатор университета
+  title:
+    type: string
+    description: Название университета
+  shortTitle:
+    type: string
+    description: Краткое название
+  faculties:
+    type: array
+    items:
+      schema:
+        $ref: '#/definitions/facultyItem'

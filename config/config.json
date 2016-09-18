@@ -1,0 +1,43 @@
+{
+  "mongoose":{
+    "UsersUri": "mongodb://testistudent.cloudapp.net/test_IStudentAPI",
+    "PSSUri": "mongodb://127.0.0.1/test",
+    "SSOUri": "mongodb://127.0.0.1/test_admin",
+    "BZUri": "mongodb://127.0.0.1/test_IStudentAPI",
+    "RDSUri": "mongodb://testistudent.cloudapp.net/test_IStudentAPI",
+    "AdminDBUri": "mongodb://127.0.0.1/test_admin"
+  },
+  "sso":{
+    "keys": ["dnfjnj39rjidsnkfjns", "ksdnfjdnsfjdnsjf"],
+    "session":{
+      "secret": "superSecretKey",
+      "key": "StudCloud:session:",
+      "cookie":{
+        "path": "/",
+        "maxAge":2592000000,
+        "httpOnly": true
+      }
+    }
+  },
+  "logs":{
+    "all": "/Users/anton/GitHub/StudCloud.space/Admin/logs/",
+    "UAMS":{
+      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "label": "UAMS"
+    },
+    "SSO":{
+      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "label": "SSO"
+    },
+    "RDS":{
+      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "label": "RDS"
+    }
+  },
+  "bin":{
+    "port": 3050,
+    "host": "127.0.0.1"
+  },
+  "host": "127.0.0.1:3050"
+
+}

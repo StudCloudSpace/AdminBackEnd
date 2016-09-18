@@ -1,0 +1,1 @@
+{"type":"object","properties":{"id":{"type":"string","description":"идентификатор факультета"},"title":{"type":"string","description":"Название факультета"},"shortTitle":{"type":"string","description":"Краткое название факультета"},"created":{"type":"date","description":"Дата создания"},"updated":{"type":"date","description":"Последняя дата обновления"}}}
