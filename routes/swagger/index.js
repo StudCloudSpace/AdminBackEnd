@@ -27,7 +27,7 @@ var options = {
 let swaggerSpec = swaggerJSDoc(options);
 swaggerSpec.definitions.Error = require('./jsonDefinitions/Error.json');
 swaggerSpec.definitions.newUsersStat = require('./jsonDefinitions/newUsersStat.json');
-swaggerSpec.definitions.subjectItem = require('./jsonDefinitions/subjectItem.json');
+swaggerSpec.definitions.subjectItem = require('./jsonDefinitions/SubjectItem.json');
 swaggerSpec.definitions.facultyItem = require('./jsonDefinitions/FacultyItem.json');
 swaggerSpec.definitions.universityItem = require('./jsonDefinitions/UniversityItem.json');
 
