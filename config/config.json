@@ -20,17 +20,17 @@
     }
   },
   "logs":{
-    "all": "/Users/anton/GitHub/StudCloud.space/Admin/logs/",
+    "all": "/var/www/AdminBackEnd/logs/logs.out",
     "UAMS":{
-      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "path": "/var/www/AdminBackEnd/logs/logs.out",
       "label": "UAMS"
     },
     "SSO":{
-      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "path": "/var/www/AdminBackEnd/logs/logs.out",
       "label": "SSO"
     },
     "RDS":{
-      "path": "/Users/anton/GitHub/StudCloud.space/Admin/logs/logs.out",
+      "path": "/var/www/AdminBackEnd/logs/logs.out",
       "label": "RDS"
     }
   },
@@ -38,6 +38,6 @@
     "port": 3050,
     "host": "127.0.0.1"
   },
-  "host": "127.0.0.1:3050"
+  "host": "admin.istudentapp.ru"
 
 }
