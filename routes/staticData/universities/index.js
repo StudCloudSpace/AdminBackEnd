@@ -18,7 +18,14 @@ univerRouter.post('/addFaculty', require("./handlers/addFaculty"));
 
 univerRouter.get('/getUniversities', require("./handlers/getUniversities"));
 
+univerRouter.post('/removeUniversity', require('./handlers/removeUniversity'));
 
-//univerRouter.get('/getFaculties', require("./handlers/getFaculties"));
+univerRouter.post('/updateFaculty', require('./handlers/updateFacultyTitle'));
+
+univerRouter.post('/updateUniversity', require('./handlers/updateUniversity'));
+
+univerRouter.get('/getFaculties', require("./handlers/getFaculties"));
+
+
 
 module.exports = univerRouter;

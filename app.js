@@ -33,17 +33,20 @@ app.use(function*(next){
 		this.set("Access-Control-Allow-Origin", '*');
 		this.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 		yield next;
-		console.log("%s %s - %s", this.method, this.url, this.status);
 	}catch(err){
-		console.log(err);
+		//throw err;
 		if(err instanceof ValidationError){
 			this.response.status = err.code;
 		}if(err instanceof AuthError){
+			this.response.status = err.code;
+		}if(err instanceof DbError){
 			this.response.status = err.code;
 		}else{
 			this.response.status = 500;
 		}
 	}
+	console.log("%s %s - %s", this.method, this.url, this.status);
+
 });
 
 app.use(function*(next){

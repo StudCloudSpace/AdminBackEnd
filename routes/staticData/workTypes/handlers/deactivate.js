@@ -2,16 +2,55 @@
 const RDS = require('@anzuev/studcloud.rds');
 const WI = RDS.getWorkTypeModel();
 const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
+const Mongoose = require('mongoose');
 
+
+
+/**
+ * @swagger
+ * /api/workTypes/disable:
+ *   post:
+ *     tags:
+ *       - WorkTypes
+ *     description: Activate workType
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: formData
+ *         description: WorkType's id
+ *         type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: workType enabled
+ *         schema:
+ *            type: object
+ *            properties:
+ *               result:
+ *                  type: boolean
+ *       400:
+ *         description: incorrect id
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ *       404:
+ *         description: No worktype found
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ *       500:
+ *         description: DB error
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ */
 module.exports = function*() {
-    try {
-        let id = this.request.body.id;
-        let res = yield WI.disable(id);
-        this.status = 200;
-        log.info(res);
-    }catch (e){
-        if (e.code == 404) throw new ValidationError(404, "No such workType");
-        else if(e.err.kind == 'ObjectId') throw new ValidationError(400, "incorrect id");
-        throw e;
-    }
+	let id;
+	try {
+		id = Mongoose.Types.ObjectId(this.request.body.id);
+	}catch (e){
+		throw new ValidationError(400, "Bad id passed");
+	}
+	console.log(id);
+
+	yield WI.disable(id);
+	this.body = {result: true};
 };

@@ -3,8 +3,8 @@ const UI = global.RDS.getUniversityModel();
 const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
 
 
-/*
- * 12swagger
+/**
+ * @swagger
  * /api/universities/getFaculties:
  *   get:
  *     tags:
@@ -13,36 +13,37 @@ const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: search
- *         in: formData
+ *       - name: query
+ *         in: query
  *         description: string for search
  *         type: string
  *         required: false
  *       - name: format
- *         in: formData
+ *         in: query
  *         description: if exists - full faculty's title, else - only short title. Doesn't influence on search string.
+ *         type: string
+ *         required: false
+ *       - name: university
+ *         in: query
+ *         description: University id
  *         type: string
  *         required: false
  *     responses:
  *       200:
- *         description: Information array
+ *         description: Faculties array
  *         schema:
- *            $ref: '#/definitions/getUniversityInfo'
+ *            type: array
+ *            items:
+ *               $ref: '#/definitions/facultyItem'
  *       204:
- *         description: No such items
+ *         description: No items found
  *         schema:
  *            $ref: '#/definitions/Error'
  */
 module.exports = function*() {
-    try {
-        let title = this.request.query.title || ""; //regex
-        let format = this.request.query.format;
-        let university = this.request.query.university;
-        let res = yield UI.getFacultiesByTitle(title,university,format);
-        this.body = res;
-        this.status = 200;
-        log.info(res);
-    } catch (e){
-        throw e;
-    }
+	let title = this.request.query.query || "";
+	let format = this.request.query.format;
+	let university = this.request.query.university;
+	let res = yield UI.getFacultiesByTitle(title,university,format);
+	this.body = res;
 };

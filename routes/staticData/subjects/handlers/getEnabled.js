@@ -43,7 +43,6 @@ module.exports = function*() {
     try{
 	    let search = this.request.query.search || "";
 	    let skip = this.request.query.skip;
-	    console.log(search);
 	    let res = yield SI.getEnabled(search,skip);
 	    this.body = res;
     }catch(err){

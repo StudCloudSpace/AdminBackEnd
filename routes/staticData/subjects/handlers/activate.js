@@ -24,6 +24,8 @@ const Mongoose = require('mongoose');
  *     responses:
  *       200:
  *         description: Subject enabled
+ *         schema:
+ *            $ref: '#/definitions/subjectItem'
  *       400:
  *         description: Incorrect id
  *         schema:

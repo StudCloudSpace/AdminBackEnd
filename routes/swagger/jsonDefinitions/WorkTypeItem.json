@@ -1,0 +1,1 @@
+{"type":"object","properties":{"_id":{"type":"string","description":"идентификатор типа работы"},"title":{"type":"string","description":"Название типа работы"},"created":{"type":"Date","description":"Время создания"},"updated":{"type":"Date","description":"Дата последнего обновления"},"enabled":{"type":"boolean","description":"Доступен ли придмет для пользователей"}}}

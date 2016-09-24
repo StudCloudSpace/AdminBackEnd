@@ -12,7 +12,7 @@ module.exports = function(app){
 	//app.use(require("./documents/index").routes());
 	app.use(require("./staticData/subjects/index").routes());
 	app.use(require("./staticData/universities/index").routes());
-	//app.use(require("./staticData/workTypes/index").routes());
+	app.use(require("./staticData/workTypes/index").routes());
 	app.use(require("./swagger/index").routes());
 
 };

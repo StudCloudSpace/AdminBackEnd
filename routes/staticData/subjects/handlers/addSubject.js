@@ -5,7 +5,7 @@ const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
 
 
 /**
- * @swagger123
+ * @swagger
  * /api/subjects/addSubject:
  *   post:
  *     tags:

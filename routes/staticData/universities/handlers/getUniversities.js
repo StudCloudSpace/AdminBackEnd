@@ -14,27 +14,32 @@ const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
  *       - application/json
  *     parameters:
  *       - name: search
- *         in: formData
+ *         in: query
  *         description: string for search
  *         type: string
  *         required: false
  *       - name: format
- *         in: formData
- *         description: if exists - full university's title, else - only short title. Doesn't influence on search string.
+ *         in: query
+ *         description: if exists - full university's title, else - short title.
  *         type: string
  *         required: false
  *     responses:
  *       200:
  *         description: Information array
- *         type: array
- *         items:
- *            schema:
- *               $ref: '#/definitions/universityItem'
+ *         schema:
+ *            type: array
+ *            items:
+ *               type: object
+ *               properties:
+ *                  title:
+ *                      type: String
+ *                  id:
+ *                      type: String
  *       204:
  *         description: No such items
  */
 module.exports = function*() {
-	let title = this.request.query.title || "";
+	let title = this.request.query.search || "";
 	let format = this.request.query.format;
 	let res = yield UI.getUniversitiesByTitle(title,format);
 	this.body = res;

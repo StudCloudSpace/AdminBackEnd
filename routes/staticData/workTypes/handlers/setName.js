@@ -1,21 +1,57 @@
 'use strict';
-const log = require(appRoot + '/libs/log');
-const RDS = require('@anzuev/studcloud.rds');
 const WI = RDS.getWorkTypeModel();
 const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
+const Mongoose = require('mongoose');
 
+
+/**
+ * @swagger
+ * /api/workTypes/setName:
+ *   post:
+ *     tags:
+ *       - WorkTypes
+ *     description: Change workType's name
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: formData
+ *         description: WorkType's id
+ *         type: string
+ *         required: true
+ *       - name: newTitle
+ *         in: formData
+ *         description: new title
+ *         type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: data is correct, subject was created
+ *       400:
+ *         description: incorrect id
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ *       500:
+ *         description: DB error
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ */
 module.exports = function*() {
+	let id = this.request.body.id;
+	let newTitle = this.request.body.newTitle;
+
     try {
-        let id = this.request.body.id;
-        let newTitle = this.request.body.newTitle;
-        if (newTitle.length < 1) throw new ValidationError(400, "too short title");
-        let res = yield WI.setName(id, newTitle);
-        this.status = 200;
-        log.info(res);
+        id = Mongoose.Types.ObjectId(id);
     }catch (e){
-        log.error(e);
-        if(e.code == 404) throw new ValidationError(404, "No such workType");
-        else if(e.err.kind == 'ObjectId') throw new ValidationError(400, "incorrect id");
-        throw new ValidationError(400, e.message);
+        throw new ValidationError(400, "Bad id passed")
     }
+
+	if(newTitle.length <= 2){
+		throw new ValidationError(400, "Title must be at least 2 chars")
+	}
+
+	yield WI.setName(id, newTitle);
+
+	this.body = {result: true};
+
 };

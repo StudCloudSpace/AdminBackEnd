@@ -1,6 +1,6 @@
 type: object
 properties:
-  id:
+  _id:
     type: string
     description: идентификатор типа работы
   title:
@@ -9,3 +9,9 @@ properties:
   created:
     type: Date
     description: Время создания
+  updated:
+    type: Date
+    description: Дата последнего обновления
+  enabled:
+    type: boolean
+    description: Доступен ли придмет для пользователей

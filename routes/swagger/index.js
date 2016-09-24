@@ -16,20 +16,21 @@ var options = {
 			version: '1.0.0',
 			description: "API for StudCloud.Admin"
 		},
-		host: require(appRoot + "config").get('host'),//require(appRoot + "config").get('bin:host') + ":" + require(appRoot + "config").get('bin:port'),
+		host: require(appRoot + "config").get('bin:host') + ":" + require(appRoot + "config").get('bin:port'),
 		basePath: '/'
 	},
 	apis: [appRoot + 'routes/authorize/**/*.js', appRoot + 'routes/users/**/*.js', appRoot + 'routes/staticData/subjects/**/*.js',
-		appRoot + 'routes/staticData/universities/**/*.js']
-
+		appRoot + 'routes/staticData/universities/**/*.js', appRoot + 'routes/staticData/workTypes/**/*.js']
 };
 
 let swaggerSpec = swaggerJSDoc(options);
 swaggerSpec.definitions.Error = require('./jsonDefinitions/Error.json');
 swaggerSpec.definitions.newUsersStat = require('./jsonDefinitions/newUsersStat.json');
 swaggerSpec.definitions.subjectItem = require('./jsonDefinitions/SubjectItem.json');
+swaggerSpec.definitions.workTypeItem = require('./jsonDefinitions/WorkTypeItem.json');
 swaggerSpec.definitions.facultyItem = require('./jsonDefinitions/FacultyItem.json');
 swaggerSpec.definitions.universityItem = require('./jsonDefinitions/UniversityItem.json');
+
 
 
 

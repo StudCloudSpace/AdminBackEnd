@@ -13,7 +13,7 @@
   "author": "AnZuev",
   "license": "ISC",
   "dependencies": {
-    "@anzuev/studcloud.rds": "1.0.8",
+    "@anzuev/studcloud.rds": "1.0.x",
     "@anzuev/studcloud.sso": "~2.0.12",
     "@anzuev/studcloud.uams": "~1.0.11",
     "koa": "^1.2.4",

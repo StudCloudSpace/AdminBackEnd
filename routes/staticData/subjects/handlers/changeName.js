@@ -29,8 +29,11 @@ const Mongoose = require('mongoose');
  *       200:
  *         description: New title has been setted
  *         schema:
- *           $ref: '#/definitions/subjectItem'
- *
+ *           type: object
+ *           properties:
+ *              result:
+ *                 type: boolean
+ *                 description: Operation result, true - new title has been setted, otherwise false;
  *       400:
  *         description: some error, watch description
  *         schema:
@@ -41,7 +44,7 @@ module.exports = function*() {
 	let newTitle;
 	try {
 		id = Mongoose.Types.ObjectId(this.request.body.id);
-		newTitle = this.request.body.newTitle;
+		newTitle = id;
 	}catch (err){
 		throw new ValidationError(400, "Incorrect id");
 	}
@@ -55,6 +58,6 @@ module.exports = function*() {
 	if (res == null){
 		throw new ValidationError(404, "No such subject");
 	} else{
-		this.body = yield SI.getById(id);
+		this.body = {result: true};
 	}
 };

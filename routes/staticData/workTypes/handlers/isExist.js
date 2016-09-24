@@ -1,18 +1,49 @@
 'use strict';
-const log = require(appRoot + '/libs/log');
-const RDS = require('@anzuev/studcloud.rds');
 const WI = RDS.getWorkTypeModel();
 const ValidationError = require("@anzuev/studcloud.errors").ValidationError;
+const Mongoose = require('mongoose');
 
+
+
+/**
+ * @swagger
+ * /api/workTypes/isExist:
+ *   get:
+ *     tags:
+ *       - WorkTypes
+ *     description: Check if such workType exists
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: query
+ *         description: WorkType's id
+ *         type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: ok
+ *         schema:
+ *            type: object
+ *            properties:
+ *               result:
+ *                  type: boolean
+ *       400:
+ *         description: Bad id passed
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ *       500:
+ *         description: DB error
+ *         schema:
+ *            $ref: '#/definitions/Error'
+ */
 module.exports = function*() {
+	let id = this.request.query.id;
     try {
-        let id = this.request.body.id;
-        let res = yield WI.isExist(id);
-        this.body = {result: res};
-        this.status = 200;
-        log.info(res);
+        id = Mongoose.Types.ObjectId(id);
     }catch (e){
-        if(e.err.kind == 'ObjectId') throw new ValidationError(400, "incorrect id");
-        throw e;
+        throw new ValidationError(400, "Bad id passed");
     }
+	let res = yield WI.isExist(id);
+	this.body = {result: res};
 };
